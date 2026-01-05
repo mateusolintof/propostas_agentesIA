@@ -48,7 +48,7 @@ src/
 │   │   └── ElegantNetwork.tsx     # Particulas conectadas animadas
 │   ├── slides/
 │   │   ├── IntroSlide.tsx         # Hero com logo e titulo
-│   │   ├── DiagnosticoSlide.tsx   # Metricas de cobertura
+│   │   ├── DiagnosticoSlide.tsx   # Diagnostico explicativo + mini graficos
 │   │   ├── ObjetivoProjetoSlide.tsx # Objetivo e diferencais tecnicos
 │   │   ├── SolucaoSlide.tsx       # 3 agentes com arquitetura
 │   │   ├── FerramentasSlide.tsx   # CRM e Dashboard
@@ -66,7 +66,7 @@ src/
 │   │   ├── GainsModal.tsx         # Ganhos operacionais
 │   │   ├── IntelligenceModal.tsx  # Inteligencia de dados
 │   │   ├── agents/
-│   │   │   ├── RadialCapabilityDiagram.tsx  # Diagrama radial de capacidades
+│   │   │   ├── RadialCapabilityDiagram.tsx  # Infografico em etapas
 │   │   │   └── AgentFlowDiagram.tsx         # Fluxograma interativo
 │   │   ├── crm/
 │   │   │   ├── CRMDashboardView.tsx   # Visao geral CRM
@@ -145,7 +145,7 @@ type ModalKind =
 | NPS | Pesquisa & NPS | Coleta de feedback pos-compra |
 
 Cada agente possui:
-- Diagrama radial de capacidades (RadialCapabilityDiagram)
+- Infografico em etapas (RadialCapabilityDiagram)
 - Fluxograma interativo (AgentFlowDiagram com XYFlow)
 - Metricas e beneficios especificos
 
@@ -187,7 +187,7 @@ O background usa React Three Fiber com:
 
 Ver `public/docs/CONTEUDO.md` para:
 - Analise de gargalos (6 problemas identificados)
-- Detalhamento das 4 solucoes
+- Detalhamento das 3 solucoes
 - Fluxos operacionais
 - Metricas e KPIs esperados
 - Plano de implementacao

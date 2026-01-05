@@ -4,4 +4,4 @@ Sugestões:
 - `logo.svg` (vetor preferível)
 - `logo.png` (fallback)
 
-Atualize as referências em `src/app/page.tsx` se necessário.
+Atualize as referências em `src/app/page.tsx` se necessário. Este template deve ficar neutro até receber o branding do cliente.

@@ -28,6 +28,15 @@
 
 > Observação: números e exemplos usados nesta proposta podem ser ilustrativos. Ajustamos metas e cenários após imersão e leitura de dados reais.
 
+### Indicadores de referência (exemplo)
+
+- Base simulada: **~500 leads/mês**
+- Leads fora do horário: **~64% (~320 leads/mês)**
+- Conversão atual: **~5%**
+- Conversão projetada com IA: **~10-12%**
+
+> Resultado esperado no cenário ilustrativo: **~14 vendas/mês → ~32 vendas/mês**.
+
 ---
 
 ## 2) Solução Proposta — 3 Agentes + Ecossistema de Gestão
@@ -131,8 +140,15 @@
 
 ## 7) Investimento
 
-- **Setup único:** R$ 25.000  
-- **Mensalidade:** R$ 2.500 / mês (todos os módulos)
+### Planos por agente (exemplo)
+
+- **Follow-up Automático:** setup R$ 5.000 + R$ 1.000/mês
+- **SDR & Qualificação:** setup R$ 15.000 + R$ 2.000/mês
+- **Pós-vendas & NPS:** setup R$ 5.000 + R$ 1.000/mês
+
+### Pacote completo (exemplo)
+
+- **Ecossistema Full:** setup **R$ 0** (desconto sobre R$ 25.000) + **R$ 4.000/mês**
 
 **Incluso no pacote**
 - 3 agentes configurados com base de conhecimento.

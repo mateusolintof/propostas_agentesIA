@@ -49,7 +49,7 @@ npm start -p 3001       # Servir build final
 ```
 src/components/slides/
 ├── IntroSlide.tsx           # Hero com logo Convert.AI
-├── DiagnosticoSlide.tsx     # Metricas: 61% sem cobertura, ~500 leads/mes
+├── DiagnosticoSlide.tsx     # Diagnostico explicativo + mini graficos
 ├── ObjetivoProjetoSlide.tsx # Requisitos e diferencais tecnicos
 ├── SolucaoSlide.tsx         # 3 agentes IA (abre AgentModal)
 ├── FerramentasSlide.tsx     # CRM + Dashboard (abre modais de preview)
@@ -110,7 +110,7 @@ export type ModalKind =
 src/components/modals/
 ├── ModalWrapper.tsx              # Base wrapper com overlay e animacoes
 ├── agents/
-│   ├── RadialCapabilityDiagram.tsx  # Diagrama radial de capacidades por agente
+│   ├── RadialCapabilityDiagram.tsx  # Infografico em etapas por agente
 │   └── AgentFlowDiagram.tsx         # Fluxograma interativo (XYFlow)
 ├── crm/
 │   ├── CRMDashboardView.tsx      # Visao geral do CRM
@@ -133,7 +133,7 @@ src/components/modals/
 | nps | Pesquisa & NPS | Coleta de feedback pos-compra | Verde |
 
 Cada agente no AgentModal exibe:
-- Diagrama radial de capacidades (customizado por tipo)
+- Infografico em etapas (Entrada → Analise → Acao ou equivalente)
 - Fluxograma interativo com XYFlow
 - Lista de beneficios
 - Metricas esperadas
@@ -225,7 +225,7 @@ const [activeView, setActiveView] = useState<ViewType>("dashboard");
 - [x] Background 3D integrado
 - [x] Navegacao horizontal com snap
 - [x] 7 modais interativos
-- [x] AgentModal com diagrama radial e fluxograma
+- [x] AgentModal com infografico em etapas e fluxograma
 - [x] CRM Preview com 4 abas
 - [x] Dashboard Preview com 4 abas
 - [x] Calculadoras de ROI e economia
@@ -239,10 +239,9 @@ const [activeView, setActiveView] = useState<ViewType>("dashboard");
 
 Ver `public/docs/CONTEUDO.md` para detalhes sobre:
 
-1. **Diagnostico:** 6 gargalos operacionais
+1. **Diagnostico:** gargalos de cobertura e conversao
 2. **Solucoes:** 3 agentes IA especializados
 3. **Ferramentas:** CRM + Dashboard executivo
 4. **Metricas:** KPIs e metas esperadas
-5. **Investimento:** R$25k setup + R$2.5k/mes
+5. **Investimento:** planos por agente + pacote completo
 6. **Cronograma:** 4 fases de implementacao
-ao

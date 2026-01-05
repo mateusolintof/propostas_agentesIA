@@ -8,6 +8,7 @@ Use this guide for any new edits or slides to keep the proposal consistent.
 - Structure content in clear, numbered or labeled blocks when two sections could compete (e.g. 01 -> 02 for diagnosis, problem -> projection).
 - Keep one dominant focal area per slide. Secondary blocks should be smaller and aligned to the same grid.
 - Prefer a single, logical read order: top-left to bottom-right on desktop; linear stack on mobile.
+- Agent modals: use the 3-step infographic grid (Entrada/Analise/Acao or equivalent) with max 2 bullets per item.
 
 ## 2) Typography Rules
 - Body text: use `text-body`.
@@ -20,6 +21,7 @@ Use this guide for any new edits or slides to keep the proposal consistent.
 - Primary surfaces: `bg-white/5`, `border-white/10`, `rounded-2xl`.
 - Subtle emphasis: use a gradient with 12-18% opacity and a matching border (`color 30%`).
 - Keep padding consistent: `p-5` for standard cards, `p-6` for key cards.
+- Avoid light (white) panels inside dark modals unless it is a data visualization preview.
 
 ## 4) Color Discipline
 - Use the tech accent `#00E5FF` for tools, dashboards, and controls.
