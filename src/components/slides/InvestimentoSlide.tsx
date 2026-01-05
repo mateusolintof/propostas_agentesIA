@@ -118,7 +118,7 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
   const isFeatured = plan.featured;
   return (
     <motion.div
-      className={`relative rounded-2xl border bg-white/5 p-6 flex flex-col gap-4 ${
+      className={`relative rounded-2xl border bg-white/5 p-6 flex flex-col gap-4 h-full ${
         isFeatured
           ? "border-[#00E5FF]/40 bg-[#00E5FF]/5 shadow-[0_20px_50px_-24px_rgba(0,229,255,0.5)]"
           : "border-white/10"
@@ -128,56 +128,70 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
       viewport={{ once: true }}
       transition={{ delay: index * 0.08 }}
     >
-      {plan.badge ? (
-        <div
-          className={`absolute -top-3 left-4 px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1 ${
-            isFeatured ? "bg-[#00E5FF] text-black" : "bg-white/10 text-white"
-          }`}
-        >
-          <Sparkles className="w-3 h-3" />
-          {plan.badge}
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+
+      <div className="flex items-start justify-between gap-3">
+        <div className="space-y-2">
+          <p className="text-[11px] uppercase tracking-[0.2em] text-white/40">
+            Plano por agente
+          </p>
+          <h3 className="text-lg font-semibold text-white">{plan.name}</h3>
+          <p className="text-white/60 text-body leading-relaxed">
+            {plan.subtitle}
+          </p>
         </div>
-      ) : null}
-
-      <div className="space-y-1">
-        <h3 className="text-lg font-semibold text-white">{plan.name}</h3>
-        <p className="text-white/60 text-body leading-relaxed">{plan.subtitle}</p>
-      </div>
-
-      <div className="pt-2 border-t border-white/10">
-        <p className="text-[11px] uppercase tracking-[0.2em] text-white/40">
-          Setup
-        </p>
-        <div className="flex items-baseline gap-2 mt-1">
-          {plan.setup.previous ? (
-            <span className="text-white/30 line-through text-body">
-              {plan.setup.previous}
-            </span>
-          ) : null}
-          <span className="text-3xl font-bold text-white">
-            {plan.setup.current}
+        {plan.badge ? (
+          <span
+            className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-semibold ${
+              isFeatured ? "bg-[#00E5FF] text-black" : "bg-white/10 text-white"
+            }`}
+          >
+            <Sparkles className="w-3 h-3" />
+            {plan.badge}
           </span>
-          <span className="text-white/50 text-xs">pagamento único</span>
-        </div>
+        ) : null}
       </div>
 
-      <div className="pt-1">
-        <p className="text-[11px] uppercase tracking-[0.2em] text-white/40">
-          Mensalidade
-        </p>
-        <div className="flex items-baseline gap-2 mt-1">
-          {plan.monthly.previous ? (
-            <span className="text-white/30 line-through text-body">
-              {plan.monthly.previous}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="rounded-xl border border-white/10 bg-black/20 p-4">
+          <p className="text-[11px] uppercase tracking-[0.2em] text-white/40">
+            Setup
+          </p>
+          <div className="flex items-baseline gap-2 mt-2">
+            {plan.setup.previous ? (
+              <span className="text-white/30 line-through text-xs">
+                {plan.setup.previous}
+              </span>
+            ) : null}
+            <span className="text-2xl font-semibold text-white">
+              {plan.setup.current}
             </span>
-          ) : null}
-          <span className="text-3xl font-bold text-[#00FF94]">
-            {plan.monthly.current}
-          </span>
+          </div>
+          <p className="text-white/40 text-xs mt-1">pagamento único</p>
+        </div>
+
+        <div className="rounded-xl border border-[#00FF94]/30 bg-[#00FF94]/10 p-4">
+          <p className="text-[11px] uppercase tracking-[0.2em] text-white/40">
+            Mensalidade
+          </p>
+          <div className="flex items-baseline gap-2 mt-2">
+            {plan.monthly.previous ? (
+              <span className="text-white/30 line-through text-xs">
+                {plan.monthly.previous}
+              </span>
+            ) : null}
+            <span className="text-2xl font-semibold text-[#00FF94]">
+              {plan.monthly.current}
+            </span>
+          </div>
+          <p className="text-white/40 text-xs mt-1">por agente</p>
         </div>
       </div>
 
-      <div className="space-y-2">
+      <div className="pt-3 border-t border-white/10 space-y-2">
+        <p className="text-[11px] uppercase tracking-[0.2em] text-white/40">
+          Inclui
+        </p>
         {plan.bullets.map((item) => (
           <div
             key={item}
@@ -205,81 +219,98 @@ export default function InvestimentoSlide() {
       }
     >
       <div className="w-full space-y-8">
-        {/* Linha 1: 3 agentes (Follow-up | SDR centro | Pós-vendas) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {agentPlans.map((plan, index) => (
-            <PlanCard key={plan.name} plan={plan} index={index} />
-          ))}
+        <div className="space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <div className="flex items-center gap-3">
+              <div className="w-1.5 h-6 bg-[#00E5FF] rounded-full" />
+              <h3 className="text-lg font-semibold text-white">
+                Planos por agente
+              </h3>
+            </div>
+            <p className="text-xs text-white/40 uppercase tracking-[0.2em]">
+              Escolha modular
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {agentPlans.map((plan, index) => (
+              <PlanCard key={plan.name} plan={plan} index={index} />
+            ))}
+          </div>
         </div>
 
-        {/* Linha 2: Ecossistema Full (largura total) */}
         <motion.div
-          className="relative rounded-2xl border border-[#00FF94]/40 bg-gradient-to-r from-[#00FF94]/10 via-[#00E5FF]/10 to-[#00FF94]/10 p-6 shadow-[0_20px_50px_-24px_rgba(0,255,148,0.4)]"
+          className="relative rounded-2xl border border-[#00FF94]/40 bg-white/5 p-6 shadow-[0_20px_50px_-24px_rgba(0,255,148,0.4)]"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
         >
-          <div className="absolute -top-3 left-4 px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1 bg-[#00FF94] text-black">
-            <Sparkles className="w-3 h-3" />
-            {fullPlan.badge}
+          <div className="absolute inset-x-0 top-0 h-0.5 bg-gradient-to-r from-[#00FF94]/60 via-[#00E5FF]/60 to-[#00FF94]/60" />
+
+          <div className="flex flex-wrap items-center gap-3 mb-4">
+            <span className="inline-flex items-center gap-1 rounded-full bg-[#00FF94] px-3 py-1 text-xs font-semibold text-black">
+              <Sparkles className="w-3 h-3" />
+              {fullPlan.badge}
+            </span>
+            <p className="text-[11px] uppercase tracking-[0.2em] text-white/40">
+              Pacote completo
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-[1fr_auto_auto_1fr] gap-6 items-center">
-            {/* Info */}
-            <div className="space-y-2">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-6 items-start">
+            <div className="space-y-3">
               <h3 className="text-xl font-semibold text-white">
                 {fullPlan.name}
               </h3>
               <p className="text-white/60 text-body leading-relaxed">
                 {fullPlan.subtitle}
               </p>
-              <div className="flex flex-wrap gap-4 pt-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
                 {fullPlan.bullets.map((item) => (
                   <div
                     key={item}
-                    className="flex items-center gap-2 text-white/70 text-body"
+                    className="flex items-start gap-2 text-white/70 text-body"
                   >
-                    <Check className="w-4 h-4 text-[#00FF94] flex-shrink-0" />
+                    <Check className="w-4 h-4 text-[#00FF94] mt-0.5 flex-shrink-0" />
                     <span>{item}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Setup */}
-            <div className="text-center px-6 border-l border-white/10">
-              <p className="text-[11px] uppercase tracking-[0.2em] text-white/40 mb-1">
-                Setup
-              </p>
-              <div className="flex items-baseline justify-center gap-2">
-                <span className="text-white/30 line-through text-body">
-                  {fullPlan.setup.previous}
-                </span>
-                <span className="text-4xl font-bold text-[#00FF94]">
-                  {fullPlan.setup.current}
-                </span>
+            <div className="space-y-3">
+              <div className="rounded-xl border border-white/10 bg-black/30 p-4 text-center">
+                <p className="text-[11px] uppercase tracking-[0.2em] text-white/40 mb-1">
+                  Setup
+                </p>
+                <div className="flex items-baseline justify-center gap-2">
+                  <span className="text-white/30 line-through text-xs">
+                    {fullPlan.setup.previous}
+                  </span>
+                  <span className="text-3xl font-semibold text-[#00FF94]">
+                    {fullPlan.setup.current}
+                  </span>
+                </div>
+                <p className="text-white/40 text-xs mt-1">pagamento único</p>
               </div>
-              <p className="text-white/40 text-xs mt-1">pagamento único</p>
-            </div>
 
-            {/* Mensalidade */}
-            <div className="text-center px-6 border-l border-white/10">
-              <p className="text-[11px] uppercase tracking-[0.2em] text-white/40 mb-1">
-                Mensalidade
-              </p>
-              <div className="flex items-baseline justify-center gap-2">
-                <span className="text-4xl font-bold text-[#00FF94]">
+              <div className="rounded-xl border border-[#00FF94]/30 bg-[#00FF94]/10 p-4 text-center">
+                <p className="text-[11px] uppercase tracking-[0.2em] text-white/40 mb-1">
+                  Mensalidade
+                </p>
+                <span className="text-3xl font-semibold text-[#00FF94]">
                   {fullPlan.monthly.current}
                 </span>
               </div>
-            </div>
 
-            {/* CTA */}
-            <div className="flex justify-end">
-              <div className="bg-[#00FF94]/20 border border-[#00FF94]/40 rounded-2xl px-6 py-4 text-center">
-                <p className="text-[#00FF94] font-bold text-2xl">100% OFF</p>
-                <p className="text-white/60 text-xs">no setup</p>
+              <div className="rounded-xl border border-[#00FF94]/30 bg-[#00FF94]/10 px-5 py-4 text-center">
+                <p className="text-[#00FF94] text-body font-semibold">
+                  Setup gratuito no pacote completo
+                </p>
+                <p className="text-white/50 text-xs mt-1">
+                  Economia imediata de {fullPlan.setup.previous}
+                </p>
               </div>
             </div>
           </div>
@@ -297,12 +328,13 @@ export default function InvestimentoSlide() {
             {deliverables.map((item, index) => (
               <motion.div
                 key={item.title}
-                className="bg-white/5 border border-white/10 rounded-2xl p-5"
+                className="relative bg-white/5 border border-white/10 rounded-2xl p-5"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 + index * 0.1 }}
               >
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                 <div className="flex items-center gap-3 mb-3">
                   <div className="p-2.5 bg-[#00E5FF]/10 rounded-lg text-[#00E5FF]">
                     {item.icon}

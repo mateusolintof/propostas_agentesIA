@@ -66,22 +66,6 @@ const gains = [
   },
 ];
 
-const mainMetrics = [
-  {
-    label: "De Cobertura e Resposta",
-    value: "100%",
-    context:
-      "Eliminação total do gap de atendimento. Todo lead, seja domingo ou 3h da manhã, é respondido e engajado instantaneamente.",
-    color: "#00FF94",
-  },
-  {
-    label: "Triagem Manual de Faturas",
-    value: "Zero",
-    context:
-      "Seu time comercial deixa de gastar tempo analisando contas abaixo de R$ 250. Só recebem o lead validado.",
-    color: "#00E5FF",
-  },
-];
 
 interface GanhosSlideProps {
   onOpenModal?: (modal: ModalKind) => void;
@@ -192,37 +176,6 @@ export default function GanhosSlide({ onOpenModal }: GanhosSlideProps) {
               </p>
               <p className="text-white/70 text-body mt-1">{item.label}</p>
               <p className="text-white/40 text-xs">{item.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Main Metrics */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-4xl mx-auto">
-          {mainMetrics.map((metric, index) => (
-            <motion.div
-              key={metric.label}
-              className="relative overflow-hidden rounded-2xl p-6 text-center"
-              style={{
-                background: `linear-gradient(135deg, ${metric.color}15, transparent)`,
-                border: `1px solid ${metric.color}30`,
-              }}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.6 + index * 0.1 }}
-            >
-              <p
-                className="text-4xl md:text-5xl font-bold"
-                style={{ color: metric.color }}
-              >
-                {metric.value}
-              </p>
-            <p className="text-white/70 mt-2 text-body font-medium">
-              {metric.label}
-            </p>
-            <p className="text-white/50 text-xs mt-2 leading-relaxed">
-              {metric.context}
-            </p>
             </motion.div>
           ))}
         </div>
