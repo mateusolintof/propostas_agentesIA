@@ -103,7 +103,7 @@ export default function AgentModal({ agent, isOpen, onClose }: AgentModalProps) 
         {/* Top Section: Description + Capabilities Diagram */}
         <div className="flex flex-col lg:flex-row gap-6">
           {/* Left: Description + Benefits */}
-          <div className="lg:w-[40%] space-y-6 flex-shrink-0">
+          <div className="order-2 lg:order-1 lg:w-[36%] space-y-6 flex-shrink-0">
             {/* Description */}
             <div className="flex items-start gap-4">
               <div
@@ -112,7 +112,7 @@ export default function AgentModal({ agent, isOpen, onClose }: AgentModalProps) 
               >
                 <div style={{ color: data.color }}>{data.icon}</div>
               </div>
-              <p className="text-white/70 text-base leading-relaxed">
+              <p className="text-white/70 text-body leading-relaxed">
                 {data.description}
               </p>
             </div>
@@ -133,7 +133,7 @@ export default function AgentModal({ agent, isOpen, onClose }: AgentModalProps) 
                     transition={{ delay: index * 0.05 }}
                   >
                     <CheckCircle className="w-4 h-4 text-[#00FF94] mt-0.5 flex-shrink-0" />
-                    <span className="text-white/70 text-sm">{benefit}</span>
+                    <span className="text-white/70 text-body">{benefit}</span>
                   </motion.div>
                 ))}
               </div>
@@ -151,7 +151,7 @@ export default function AgentModal({ agent, isOpen, onClose }: AgentModalProps) 
           </div>
 
           {/* Right: Radial Capability Diagram */}
-          <div className="flex-1">
+          <div className="order-1 lg:order-2 flex-1">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}

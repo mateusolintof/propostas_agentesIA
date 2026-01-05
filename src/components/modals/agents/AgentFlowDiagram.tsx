@@ -3,8 +3,6 @@
 import {
   ReactFlow,
   Background,
-  Controls,
-  MiniMap,
   useNodesState,
   useEdgesState,
   Handle,
@@ -56,48 +54,58 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 };
 
 // Variant styles for different node types
-const variantStyles: Record<string, { bg: string; border: string; iconBg: string; text: string }> = {
+const variantStyles: Record<
+  string,
+  { border: string; iconBg: string; icon: string; title: string; desc: string }
+> = {
   input: {
-    bg: "from-emerald-50 to-emerald-100/80",
-    border: "border-emerald-300",
-    iconBg: "bg-emerald-500",
-    text: "text-emerald-900",
+    border: "border-emerald-400/40",
+    iconBg: "bg-emerald-400/15",
+    icon: "text-emerald-300",
+    title: "text-white",
+    desc: "text-white/55",
   },
   primary: {
-    bg: "from-blue-50 to-blue-100/80",
-    border: "border-blue-300",
-    iconBg: "bg-blue-500",
-    text: "text-blue-900",
+    border: "border-sky-400/40",
+    iconBg: "bg-sky-400/15",
+    icon: "text-sky-300",
+    title: "text-white",
+    desc: "text-white/55",
   },
   decision: {
-    bg: "from-amber-50 to-amber-100/80",
-    border: "border-amber-300",
-    iconBg: "bg-amber-500",
-    text: "text-amber-900",
+    border: "border-amber-400/40",
+    iconBg: "bg-amber-400/15",
+    icon: "text-amber-300",
+    title: "text-white",
+    desc: "text-white/55",
   },
   output: {
-    bg: "from-purple-50 to-purple-100/80",
-    border: "border-purple-300",
-    iconBg: "bg-purple-500",
-    text: "text-purple-900",
+    border: "border-violet-400/40",
+    iconBg: "bg-violet-400/15",
+    icon: "text-violet-300",
+    title: "text-white",
+    desc: "text-white/55",
   },
   success: {
-    bg: "from-green-50 to-green-100/80",
-    border: "border-green-400",
-    iconBg: "bg-green-500",
-    text: "text-green-900",
+    border: "border-emerald-400/50",
+    iconBg: "bg-emerald-400/15",
+    icon: "text-emerald-300",
+    title: "text-white",
+    desc: "text-white/55",
   },
   danger: {
-    bg: "from-red-50 to-red-100/80",
-    border: "border-red-300",
-    iconBg: "bg-red-500",
-    text: "text-red-900",
+    border: "border-rose-400/45",
+    iconBg: "bg-rose-400/15",
+    icon: "text-rose-300",
+    title: "text-white",
+    desc: "text-white/55",
   },
   default: {
-    bg: "from-slate-50 to-slate-100/80",
-    border: "border-slate-300",
-    iconBg: "bg-slate-500",
-    text: "text-slate-900",
+    border: "border-white/20",
+    iconBg: "bg-white/10",
+    icon: "text-white/60",
+    title: "text-white",
+    desc: "text-white/50",
   },
 };
 
@@ -120,31 +128,26 @@ function CustomNode({ data }: { data: CustomNodeData }) {
       initial={shouldReduceMotion ? {} : { opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className={`
-        relative px-4 py-3 rounded-xl border-2 shadow-md
-        bg-gradient-to-br ${styles.bg} ${styles.border}
-        hover:shadow-lg hover:scale-[1.02] transition-all duration-200
-        min-w-[140px] max-w-[180px] backdrop-blur-sm
-      `}
+      className={`relative px-4 py-3 rounded-2xl border ${styles.border} bg-[#0b1220]/90 shadow-[0_18px_35px_-28px_rgba(0,0,0,0.9)] min-w-[180px] max-w-[220px]`}
     >
       <Handle
         type="target"
         position={Position.Left}
-        className="!w-3 !h-3 !bg-slate-400 !border-2 !border-white"
+        className="!w-3 !h-3 !bg-white/40 !border-2 !border-white/70"
       />
 
       <div className="flex items-start gap-2">
         {Icon && (
           <div className={`p-1.5 rounded-lg ${styles.iconBg} flex-shrink-0`}>
-            <Icon className="w-4 h-4 text-white" />
+            <Icon className={`w-4 h-4 ${styles.icon}`} />
           </div>
         )}
         <div className="flex-1 min-w-0">
-          <p className={`text-sm font-semibold ${styles.text} leading-tight`}>
+          <p className={`text-sm font-semibold ${styles.title} leading-tight`}>
             {data.label}
           </p>
           {data.description && (
-            <p className="text-xs text-slate-500 mt-0.5 leading-tight">
+            <p className={`text-xs mt-0.5 leading-tight ${styles.desc}`}>
               {data.description}
             </p>
           )}
@@ -154,7 +157,7 @@ function CustomNode({ data }: { data: CustomNodeData }) {
       <Handle
         type="source"
         position={Position.Right}
-        className="!w-3 !h-3 !bg-slate-400 !border-2 !border-white"
+        className="!w-3 !h-3 !bg-white/40 !border-2 !border-white/70"
       />
     </motion.div>
   );
@@ -243,23 +246,23 @@ export default function AgentFlowDiagram({ agentType, agentColor }: AgentFlowDia
   const [edges, , onEdgesChange] = useEdgesState(flowData.edges);
 
   return (
-    <div className="w-full h-[550px] bg-white rounded-xl border border-gray-200 overflow-hidden relative">
+    <div className="w-full h-[520px] bg-[#0b1220]/80 rounded-2xl border border-white/10 overflow-hidden relative">
       <div
         aria-hidden="true"
         className="absolute inset-x-0 top-0 h-1"
         style={{ backgroundColor: agentColor }}
       />
       {/* Header */}
-      <div className="absolute top-3 left-3 z-10 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 border border-gray-200 shadow-sm">
+      <div className="absolute top-4 left-4 z-10 bg-[#0b1220]/80 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/10 shadow-sm">
         <div className="flex items-center gap-2">
           <span
             aria-hidden="true"
             className="h-2 w-2 rounded-full"
             style={{ backgroundColor: agentColor }}
           />
-          <h4 className="text-sm font-semibold text-gray-900">Fluxo de Operação</h4>
+          <h4 className="text-sm font-semibold text-white">Fluxo de Operação</h4>
         </div>
-        <p className="text-xs text-gray-500">Arraste para navegar • Scroll para zoom</p>
+        <p className="text-xs text-white/50">Arraste para explorar o fluxo</p>
       </div>
 
       <ReactFlow
@@ -270,59 +273,37 @@ export default function AgentFlowDiagram({ agentType, agentColor }: AgentFlowDia
         nodeTypes={nodeTypes}
         fitView
         fitViewOptions={{ padding: 0.3, includeHiddenNodes: false }}
-        minZoom={0.3}
-        maxZoom={2}
+        minZoom={0.6}
+        maxZoom={1.4}
         attributionPosition="bottom-left"
-        nodesDraggable={true}
+        nodesDraggable={false}
         nodesConnectable={false}
-        elementsSelectable={true}
-        zoomOnScroll={true}
-        panOnScroll={true}
+        elementsSelectable={false}
+        zoomOnScroll={false}
+        panOnScroll={false}
         panOnDrag={true}
       >
-        <Background color="#e2e8f0" gap={20} size={1} />
-        <Controls
-          className="!bg-white !border-gray-200 !shadow-md !rounded-lg"
-          showInteractive={false}
-        />
-        <MiniMap
-          nodeColor={(node) => {
-            const variant = (node.data as unknown as CustomNodeData)?.variant || "default";
-            const colorMap: Record<string, string> = {
-              input: "#10b981",
-              primary: "#3b82f6",
-              decision: "#f59e0b",
-              output: "#8b5cf6",
-              success: "#22c55e",
-              danger: "#ef4444",
-              default: "#64748b",
-            };
-            return colorMap[variant] || "#64748b";
-          }}
-          maskColor="rgba(255, 255, 255, 0.8)"
-          className="!bg-white/80 !border-gray-200 !rounded-lg"
-          style={{ width: 120, height: 80 }}
-        />
+        <Background color="rgba(255,255,255,0.08)" gap={22} size={1} />
       </ReactFlow>
 
       {/* Legend */}
-      <div className="absolute bottom-3 left-3 z-10 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-2 border border-gray-200 shadow-sm">
+      <div className="absolute bottom-4 left-4 z-10 bg-[#0b1220]/80 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/10 shadow-sm">
         <div className="flex items-center gap-3 text-[11px]">
           <div className="flex items-center gap-1">
             <div className="w-2 h-2 rounded-full bg-emerald-500" />
-            <span className="text-gray-600">Entrada</span>
+            <span className="text-white/60">Entrada</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-2 h-2 rounded-full bg-blue-500" />
-            <span className="text-gray-600">Processo</span>
+            <span className="text-white/60">Processo</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-2 h-2 rounded-full bg-amber-500" />
-            <span className="text-gray-600">Decisão</span>
+            <span className="text-white/60">Decisão</span>
           </div>
           <div className="flex items-center gap-1">
             <div className="w-2 h-2 rounded-full bg-purple-500" />
-            <span className="text-gray-600">Saída</span>
+            <span className="text-white/60">Saída</span>
           </div>
         </div>
       </div>
