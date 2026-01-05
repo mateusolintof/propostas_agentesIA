@@ -15,6 +15,11 @@ const AGENT_ANGLES = [0, 120, 240];
 
 const agents: { id: AgentType; name: string; icon: React.ReactNode }[] = [
   {
+    id: "nps",
+    name: "Pós-vendas & NPS",
+    icon: <Star className="w-5 h-5" />,
+  },
+  {
     id: "sdr",
     name: "SDR & Qualificação",
     icon: <MessageSquare className="w-5 h-5" />,
@@ -23,11 +28,6 @@ const agents: { id: AgentType; name: string; icon: React.ReactNode }[] = [
     id: "noshow",
     name: "Follow-up Automático",
     icon: <CalendarCheck className="w-5 h-5" />,
-  },
-  {
-    id: "nps",
-    name: "Pós-vendas & NPS",
-    icon: <Star className="w-5 h-5" />,
   },
 ];
 
@@ -66,11 +66,11 @@ export default function SolucaoSlide({ onOpenModal }: SolucaoSlideProps) {
           </div>
 
           {/* Orbit Rings */}
-          <div className="absolute inset-0 border border-white/5 rounded-full md:animate-[spin_30s_linear_infinite]" />
-          <div className="absolute inset-12 border border-dashed border-white/10 rounded-full md:animate-[spin_20s_linear_infinite_reverse]" />
+          <div className="absolute inset-0 border border-white/5 rounded-full motion-reduce:animate-none animate-[spin_30s_linear_infinite]" />
+          <div className="absolute inset-12 border border-dashed border-white/10 rounded-full motion-reduce:animate-none animate-[spin_20s_linear_infinite_reverse]" />
 
           {/* Agents (orbiting) */}
-          <div className="absolute inset-0">
+          <div className="absolute inset-0 motion-reduce:animate-none animate-[spin_40s_linear_infinite]">
             {agents.map((agent, index) => {
               const angle = AGENT_ANGLES[index] ?? 0;
               return (
@@ -82,26 +82,28 @@ export default function SolucaoSlide({ onOpenModal }: SolucaoSlideProps) {
                   }}
                 >
                   <div style={{ transform: `rotate(-${angle}deg)` }}>
-                    <motion.button
-                      type="button"
-                      onClick={() => onOpenModal?.({ type: "agent", agent: agent.id })}
-                      className="relative w-14 h-14 rounded-full bg-black/60 border border-white/20 hover:border-[#00FF94] transition-all flex items-center justify-center backdrop-blur-md group cursor-pointer"
-                      initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.2 + index * 0.1 }}
-                      whileHover={{ scale: 1.15, boxShadow: "0 0 20px rgba(0, 255, 148, 0.4)" }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      {/* Pulse ring */}
-                      <span className="absolute inset-0 rounded-full border border-[#00FF94]/30 animate-ping opacity-30" />
-                      <div className="text-white/80 group-hover:text-[#00FF94] transition-colors">
-                        {agent.icon}
-                      </div>
-                      <span className="absolute -bottom-10 text-[11px] font-medium text-white/60 group-hover:text-white whitespace-nowrap text-center leading-tight transition-colors">
-                        {agent.name}
-                      </span>
-                    </motion.button>
+                    <div className="motion-reduce:animate-none animate-[spin_40s_linear_infinite_reverse]">
+                      <motion.button
+                        type="button"
+                        onClick={() => onOpenModal?.({ type: "agent", agent: agent.id })}
+                        className="relative w-14 h-14 rounded-full bg-black/60 border border-white/20 hover:border-[#00FF94] transition-all flex items-center justify-center backdrop-blur-md group cursor-pointer"
+                        initial={{ opacity: 0, scale: 0 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.2 + index * 0.1 }}
+                        whileHover={{ scale: 1.15, boxShadow: "0 0 20px rgba(0, 255, 148, 0.4)" }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        {/* Pulse ring */}
+                        <span className="absolute inset-0 rounded-full border border-[#00FF94]/30 animate-ping opacity-30" />
+                        <div className="text-white/80 group-hover:text-[#00FF94] transition-colors">
+                          {agent.icon}
+                        </div>
+                        <span className="absolute -bottom-10 text-[11px] font-medium text-white/60 group-hover:text-white whitespace-nowrap text-center leading-tight transition-colors">
+                          {agent.name}
+                        </span>
+                      </motion.button>
+                    </div>
                   </div>
                 </div>
               );
