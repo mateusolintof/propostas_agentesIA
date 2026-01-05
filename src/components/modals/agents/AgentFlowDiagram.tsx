@@ -128,7 +128,7 @@ function CustomNode({ data }: { data: CustomNodeData }) {
       initial={shouldReduceMotion ? {} : { opacity: 0, scale: 0.8 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3, ease: "easeOut" }}
-      className={`relative px-4 py-3 rounded-2xl border ${styles.border} bg-[#0b1220]/90 shadow-[0_18px_35px_-28px_rgba(0,0,0,0.9)] min-w-[180px] max-w-[220px]`}
+      className={`relative px-4 py-3 rounded-2xl border ${styles.border} bg-[#0b1220]/90 shadow-[0_18px_35px_-28px_rgba(0,0,0,0.9)] min-w-[180px] max-w-[220px] cursor-grab active:cursor-grabbing hover:border-white/30 transition-colors`}
     >
       <Handle
         type="target"
@@ -262,7 +262,7 @@ export default function AgentFlowDiagram({ agentType, agentColor }: AgentFlowDia
           />
           <h4 className="text-sm font-semibold text-white">Fluxo de Operação</h4>
         </div>
-        <p className="text-xs text-white/50">Arraste para explorar o fluxo</p>
+        <p className="text-xs text-white/50">Arraste nodes para ajustar o layout</p>
       </div>
 
       <ReactFlow
@@ -273,15 +273,16 @@ export default function AgentFlowDiagram({ agentType, agentColor }: AgentFlowDia
         nodeTypes={nodeTypes}
         fitView
         fitViewOptions={{ padding: 0.3, includeHiddenNodes: false }}
-        minZoom={0.6}
-        maxZoom={1.4}
+        minZoom={0.5}
+        maxZoom={1.8}
         attributionPosition="bottom-left"
-        nodesDraggable={false}
+        nodesDraggable={true}
         nodesConnectable={false}
-        elementsSelectable={false}
-        zoomOnScroll={false}
-        panOnScroll={false}
+        elementsSelectable={true}
+        zoomOnScroll={true}
+        panOnScroll={true}
         panOnDrag={true}
+        selectNodesOnDrag={false}
       >
         <Background color="rgba(255,255,255,0.08)" gap={22} size={1} />
       </ReactFlow>
