@@ -24,7 +24,7 @@ interface CapabilityItem {
   id: string;
   title: string;
   subtitle: string;
-  icon: React.ComponentType<{ className?: string }>;
+  icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
   items: string[];
 }
 
