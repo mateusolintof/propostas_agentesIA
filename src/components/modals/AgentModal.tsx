@@ -174,9 +174,6 @@ export default function AgentModal({ agent, isOpen, onClose }: AgentModalProps) 
             <h3 className="text-lg font-semibold text-white">
               Fluxo de Operação Detalhado
             </h3>
-            <span className="text-xs text-white/40 bg-white/5 px-3 py-1 rounded-full">
-              Arraste para explorar
-            </span>
           </div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
