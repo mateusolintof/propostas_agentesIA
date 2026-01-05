@@ -4,8 +4,8 @@
 
 Apresentacao horizontal interativa para Proposta Comercial da minha agência de Tecnologia - Convert.AI , focada em Agentes de IA para Atendimento Comercial e outras soluções.
 
-**Cliente:** CM Remedios
-**Documento de negocio:** `public/docs/arquitetura.md`
+**Cliente:** Modelo base
+**Documento de negocio:** `public/docs/CONTEUDO.md`
 **Porta de desenvolvimento:** 3001
 
 ## Stack Tecnica
@@ -44,22 +44,19 @@ npm start -p 3001       # Servir build final
 - Conversao de mouse wheel para scroll horizontal
 - Progress bar animada com Framer Motion
 
-### Slides (12 total)
+### Slides (9 total)
 
 ```
 src/components/slides/
-├── IntroSlide.tsx         # Hero com logo CM Remedios
-├── DiagnosticoSlide.tsx   # Metricas: 61% sem cobertura, ~500 leads/mes
-├── DesafioSlide.tsx       # 50-70% abandono fora do horario
-├── ImpactoSlide.tsx       # Custo da inacao, oportunidades perdidas
-├── SolucaoSlide.tsx       # 4 agentes IA (abre AgentModal)
-├── FerramentasSlide.tsx   # CRM + Dashboard (abre modais de preview)
-├── GanhosSlide.tsx        # -60% abandono, +40% conversao
-├── ViabilidadeSlide.tsx   # ROI +300%, payback 3-4 meses
-├── EntregaveisSlide.tsx   # 4 agentes + ERP + CRM + treinamento
-├── InvestimentoSlide.tsx  # R$25k setup + R$2.5k/mes
-├── FAQSlide.tsx           # 6 perguntas frequentes (accordion)
-└── CronogramaSlide.tsx    # 4 fases: Kick-off, Dev, Validacao, Go-Live
+├── IntroSlide.tsx           # Hero com logo Convert.AI
+├── DiagnosticoSlide.tsx     # Metricas: 61% sem cobertura, ~500 leads/mes
+├── ObjetivoProjetoSlide.tsx # Requisitos e diferencais tecnicos
+├── SolucaoSlide.tsx         # 3 agentes IA (abre AgentModal)
+├── FerramentasSlide.tsx     # CRM + Dashboard (abre modais de preview)
+├── GanhosSlide.tsx          # Resultados + Viabilidade (calculadoras)
+├── InvestimentoSlide.tsx    # Planos + entregaveis inclusos
+├── FAQSlide.tsx             # 6 perguntas frequentes (accordion)
+└── CronogramaSlide.tsx      # 4 fases: Kick-off, Dev, Validacao, Go-Live
 ```
 
 ### SlideShell Props
@@ -82,7 +79,7 @@ interface SlideShellProps {
 #### Tipos (`src/types/modal.ts`)
 
 ```typescript
-export type AgentType = "sdr" | "faq" | "noshow" | "nps";
+export type AgentType = "sdr" | "noshow" | "nps";
 
 export type ModalKind =
   | { type: "agent"; agent: AgentType }
@@ -99,11 +96,11 @@ export type ModalKind =
 
 | Modal | Arquivo | Aberto por | Descricao |
 |-------|---------|------------|-----------|
-| AgentModal | `AgentModal.tsx` | SolucaoSlide | Detalhes dos 4 agentes IA |
+| AgentModal | `AgentModal.tsx` | SolucaoSlide | Detalhes dos 3 agentes IA |
 | CRMPreviewModal | `CRMPreviewModal.tsx` | FerramentasSlide | Preview interativo do CRM |
 | DashboardPreviewModal | `DashboardPreviewModal.tsx` | FerramentasSlide | Preview do Dashboard |
-| ROICalculatorModal | `ROICalculatorModal.tsx` | ViabilidadeSlide | Calculadora interativa |
-| CostReductionModal | `CostReductionModal.tsx` | ViabilidadeSlide | Simulador de economia |
+| ROICalculatorModal | `ROICalculatorModal.tsx` | GanhosSlide | Calculadora interativa |
+| CostReductionModal | `CostReductionModal.tsx` | GanhosSlide | Simulador de economia |
 | GainsModal | `GainsModal.tsx` | GanhosSlide | Ganhos operacionais |
 | IntelligenceModal | `IntelligenceModal.tsx` | GanhosSlide | Inteligencia de dados |
 
@@ -132,7 +129,6 @@ src/components/modals/
 | ID | Nome | Funcao | Cor |
 |----|------|--------|-----|
 | sdr | SDR & Qualificacao | Qualificacao e conversao 24/7 | Cyan |
-| faq | FAQ Inteligente | Respostas automaticas a duvidas | Verde |
 | noshow | Follow-up Automatico | Cadencia e recuperacao de conversoes | Cyan |
 | nps | Pesquisa & NPS | Coleta de feedback pos-compra | Verde |
 
@@ -183,11 +179,15 @@ const Scene = dynamic(() => import("@/components/3d/Scene"), { ssr: false });
 
 ## Padroes de Codigo
 
+### Guia de padronizacao visual
+
+Consulte `STYLE_GUIDE.md` antes de alterar layout, tipografia, cores ou hierarquia de conteudo.
+
 ### Tipografia minima
 
 - Texto legivel: minimo `text-[11px]`
 - Labels: `text-xs` (12px)
-- Body: `text-sm` (14px)
+- Body: `text-body`
 - Headings: `text-base` a `text-5xl`
 
 ### Animacoes
@@ -221,7 +221,7 @@ const [activeView, setActiveView] = useState<ViewType>("dashboard");
 
 ## Checklist do Projeto
 
-- [x] 12 slides criados e funcionando
+- [x] 9 slides criados e funcionando
 - [x] Background 3D integrado
 - [x] Navegacao horizontal com snap
 - [x] 7 modais interativos
@@ -237,10 +237,10 @@ const [activeView, setActiveView] = useState<ViewType>("dashboard");
 
 ## Conteudo de Negocio
 
-Ver `public/docs/arquitetura.md` para detalhes sobre:
+Ver `public/docs/CONTEUDO.md` para detalhes sobre:
 
 1. **Diagnostico:** 6 gargalos operacionais
-2. **Solucoes:** 4 agentes IA especializados
+2. **Solucoes:** 3 agentes IA especializados
 3. **Ferramentas:** CRM + Dashboard executivo
 4. **Metricas:** KPIs e metas esperadas
 5. **Investimento:** R$25k setup + R$2.5k/mes

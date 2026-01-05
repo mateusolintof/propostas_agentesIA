@@ -28,6 +28,10 @@ npm run build:turbo     # production build with Turbopack
 npm start -p 3001       # serve prod build on 3001
 ```
 
+## Guia de padronizacao visual
+
+Antes de alterar layout, tipografia, cores ou hierarquia de conteudo, consulte `STYLE_GUIDE.md`.
+
 ## Estrutura do Projeto
 
 ```
@@ -45,14 +49,11 @@ src/
 │   ├── slides/
 │   │   ├── IntroSlide.tsx         # Hero com logo e titulo
 │   │   ├── DiagnosticoSlide.tsx   # Metricas de cobertura
-│   │   ├── DesafioSlide.tsx       # Abandono e impacto
-│   │   ├── ImpactoSlide.tsx       # Custo da inacao
-│   │   ├── SolucaoSlide.tsx       # 4 agentes com arquitetura
+│   │   ├── ObjetivoProjetoSlide.tsx # Objetivo e diferencais tecnicos
+│   │   ├── SolucaoSlide.tsx       # 3 agentes com arquitetura
 │   │   ├── FerramentasSlide.tsx   # CRM e Dashboard
-│   │   ├── GanhosSlide.tsx        # Resultados esperados
-│   │   ├── ViabilidadeSlide.tsx   # ROI e economia
-│   │   ├── EntregaveisSlide.tsx   # Setup e suporte
-│   │   ├── InvestimentoSlide.tsx  # Precos e pacotes
+│   │   ├── GanhosSlide.tsx        # Resultados + Viabilidade
+│   │   ├── InvestimentoSlide.tsx  # Precos, pacotes e entregaveis
 │   │   ├── FAQSlide.tsx           # Perguntas frequentes
 │   │   └── CronogramaSlide.tsx    # 4 fases de implementacao
 │   ├── modals/
@@ -93,7 +94,7 @@ public/
 │   ├── logo-badge-white.svg
 │   └── logo-placeholder.svg
 └── docs/
-    └── arquitetura.md             # Documento de negocio detalhado
+    └── CONTEUDO.md                # Documento de negocio detalhado
 ```
 
 ## Paleta de Cores
@@ -105,22 +106,19 @@ public/
 | Success Green | `#00FF94` | Metricas positivas, CTAs |
 | White | `#FFFFFF` / `rgba` | Textos e bordas |
 
-## Slides (12 secoes)
+## Slides (9 secoes)
 
 | # | Slide | Descricao | Modais |
 |---|-------|-----------|--------|
 | 1 | Intro | Logo, titulo hero, tagline | - |
 | 2 | Diagnostico | Metricas de cobertura e pain points | - |
-| 3 | Desafio | 50-70% abandono, impacto na reputacao | - |
-| 4 | Impacto | Custo da inacao, oportunidades perdidas | - |
-| 5 | Solucao | 4 agentes IA com arquitetura | AgentModal (4 tipos) |
-| 6 | Ferramentas | CRM, Dashboard, historico | CRMPreviewModal, DashboardPreviewModal |
-| 7 | Ganhos | -60% abandono, +40% conversao | GainsModal, IntelligenceModal |
-| 8 | Viabilidade | ROI projetado, payback | ROICalculatorModal, CostReductionModal |
-| 9 | Entregaveis | Setup + treinamento + suporte | - |
-| 10 | Investimento | R$25k setup + R$2.5k/mes | - |
-| 11 | FAQ | Perguntas frequentes (accordion) | - |
-| 12 | Cronograma | 4 fases ate Go-Live | - |
+| 3 | Objetivo | Requisitos e diferencais tecnicos | - |
+| 4 | Solucao | 3 agentes IA com arquitetura | AgentModal |
+| 5 | Ferramentas | CRM, Dashboard, historico | CRMPreviewModal, DashboardPreviewModal |
+| 6 | Resultados | Ganhos esperados + Viabilidade | GainsModal, IntelligenceModal, ROICalculatorModal, CostReductionModal |
+| 7 | Investimento | Precos, pacotes e entregaveis | - |
+| 8 | FAQ | Perguntas frequentes (accordion) | - |
+| 9 | Cronograma | 4 fases ate Go-Live | - |
 
 ## Sistema de Modais
 
@@ -128,7 +126,7 @@ public/
 
 ```typescript
 type ModalKind =
-  | { type: "agent"; agent: "sdr" | "faq" | "noshow" | "nps" }
+  | { type: "agent"; agent: "sdr" | "noshow" | "nps" }
   | { type: "crm" }
   | { type: "dashboard" }
   | { type: "roi" }
@@ -138,12 +136,11 @@ type ModalKind =
   | null;
 ```
 
-### Agentes IA (4 tipos)
+### Agentes IA (3 tipos)
 
 | Agente | Nome Completo | Funcao |
 |--------|---------------|--------|
 | SDR | SDR & Qualificacao | Qualificacao e conversao 24/7 |
-| FAQ | FAQ Inteligente | Respostas automaticas a duvidas |
 | NoShow | Follow-up Automatico | Cadencia e recuperacao de conversoes |
 | NPS | Pesquisa & NPS | Coleta de feedback pos-compra |
 
@@ -188,7 +185,7 @@ O background usa React Three Fiber com:
 
 ## Documento de Negocio
 
-Ver `public/docs/arquitetura.md` para:
+Ver `public/docs/CONTEUDO.md` para:
 - Analise de gargalos (6 problemas identificados)
 - Detalhamento das 4 solucoes
 - Fluxos operacionais

@@ -116,7 +116,7 @@ export default function SolucaoSlide({ onOpenModal }: SolucaoSlideProps) {
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
-              className="bg-white/5 border border-white/10 rounded-xl p-5 hover:border-[#00FF94]/30 transition-colors"
+              className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:border-[#00FF94]/30 transition-colors"
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}

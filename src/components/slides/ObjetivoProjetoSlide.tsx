@@ -54,7 +54,7 @@ const ferramentas = [
   {
     icon: BookOpen,
     title: "Base de Conhecimento (RAG)",
-    desc: "Treinado nas regras de negócio da Tempo. Responde com precisão",
+    desc: "Treinado nas regras de negócio do cliente. Responde com precisão",
   },
   {
     icon: Shield,
@@ -72,23 +72,20 @@ export default function ObjetivoProjetoSlide() {
       subtitle="Validação técnica: o que você precisa e como vamos entregar"
       size="compact"
     >
-      <div
-        className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full overflow-y-auto"
-        data-allow-vertical-scroll
-      >
-        {/* Coluna Esquerda: O Que a Tempo Energia Deseja */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-full">
+        {/* Coluna Esquerda: O Que o Cliente Deseja */}
         <div className="space-y-5">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-1.5 h-7 bg-amber-500 rounded-full" />
             <h3 className="text-lg font-semibold text-white">
-              O Que a Tempo Energia Deseja
+              O Que o Cliente Deseja
             </h3>
           </div>
 
           {clienteDeseja.map((section, idx) => (
             <motion.div
               key={section.category}
-              className="bg-white/5 border border-white/10 rounded-xl p-5"
+              className="bg-white/5 border border-white/10 rounded-2xl p-5"
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -101,7 +98,7 @@ export default function ObjetivoProjetoSlide() {
                 {section.items.map((item, i) => (
                   <li
                     key={i}
-                    className="flex items-start gap-2 text-white/70 text-sm"
+                  className="flex items-start gap-2 text-white/70 text-body"
                   >
                     <Check className="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0" />
                     <span>{item}</span>
@@ -123,7 +120,7 @@ export default function ObjetivoProjetoSlide() {
 
           {/* Entrega Principal */}
           <motion.div
-            className="bg-[#00FF94]/10 border border-[#00FF94]/30 rounded-xl p-5"
+            className="bg-[#00FF94]/10 border border-[#00FF94]/30 rounded-2xl p-5"
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
@@ -134,7 +131,7 @@ export default function ObjetivoProjetoSlide() {
                 Entrega Principal
               </p>
             </div>
-            <p className="text-white/80 text-sm leading-relaxed">
+            <p className="text-white/80 text-body leading-relaxed">
               Agente SDR humanizado que qualifica leads, classifica por score e
               realiza handoff para vendedor humano finalizar a venda.
             </p>
@@ -148,7 +145,7 @@ export default function ObjetivoProjetoSlide() {
             {ferramentas.map((tool, idx) => (
               <motion.div
                 key={tool.title}
-                className="bg-white/5 border border-white/10 rounded-lg p-3.5 flex items-start gap-3 hover:border-[#00FF94]/30 transition-colors"
+                className="bg-white/5 border border-white/10 rounded-xl p-3.5 flex items-start gap-3 hover:border-[#00FF94]/30 transition-colors"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -158,7 +155,7 @@ export default function ObjetivoProjetoSlide() {
                   <tool.icon className="w-4 h-4 text-[#00E5FF]" />
                 </div>
                 <div>
-                  <h4 className="text-sm font-medium text-white">
+                  <h4 className="text-body font-medium text-white">
                     {tool.title}
                   </h4>
                   <p className="text-xs text-white/50 mt-0.5">{tool.desc}</p>

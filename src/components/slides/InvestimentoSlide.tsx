@@ -1,7 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Check, Sparkles } from "lucide-react";
+import {
+  Bot,
+  Link2,
+  LayoutDashboard,
+  GraduationCap,
+  Check,
+  Sparkles,
+} from "lucide-react";
 import SlideShell from "@/components/ui/SlideShell";
 
 type Plan = {
@@ -67,6 +74,46 @@ const fullPlan: Plan = {
   featured: true,
 };
 
+const deliverables = [
+  {
+    icon: <Bot className="w-6 h-6" />,
+    title: "3 Agentes Personalizados",
+    items: [
+      "SDR & Qualificação",
+      "Follow-up Automático",
+      "Pós-vendas & NPS",
+    ],
+  },
+  {
+    icon: <Link2 className="w-6 h-6" />,
+    title: "Ferramentas e Integrações",
+    items: [
+      "Leitura de imagens e faturas de energia",
+      "Cálculos matemáticos",
+      "Escalação para Humano",
+      "Notificação Inteligente para vendedor",
+    ],
+  },
+  {
+    icon: <LayoutDashboard className="w-6 h-6" />,
+    title: "CRM & Dashboard",
+    items: [
+      "Funil de vendas",
+      "KPIs em tempo real",
+      "Relatórios executivos",
+    ],
+  },
+  {
+    icon: <GraduationCap className="w-6 h-6" />,
+    title: "Treinamento & Suporte",
+    items: [
+      "Suporte contínuo",
+      "30 dias de testes até validação do time",
+      "Banco de dados completo e servidor 24/7",
+    ],
+  },
+];
+
 function PlanCard({ plan, index }: { plan: Plan; index: number }) {
   const isFeatured = plan.featured;
   return (
@@ -94,7 +141,7 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
 
       <div className="space-y-1">
         <h3 className="text-lg font-semibold text-white">{plan.name}</h3>
-        <p className="text-white/60 text-sm leading-relaxed">{plan.subtitle}</p>
+        <p className="text-white/60 text-body leading-relaxed">{plan.subtitle}</p>
       </div>
 
       <div className="pt-2 border-t border-white/10">
@@ -103,7 +150,7 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
         </p>
         <div className="flex items-baseline gap-2 mt-1">
           {plan.setup.previous ? (
-            <span className="text-white/30 line-through text-sm">
+            <span className="text-white/30 line-through text-body">
               {plan.setup.previous}
             </span>
           ) : null}
@@ -120,7 +167,7 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
         </p>
         <div className="flex items-baseline gap-2 mt-1">
           {plan.monthly.previous ? (
-            <span className="text-white/30 line-through text-sm">
+            <span className="text-white/30 line-through text-body">
               {plan.monthly.previous}
             </span>
           ) : null}
@@ -134,7 +181,7 @@ function PlanCard({ plan, index }: { plan: Plan; index: number }) {
         {plan.bullets.map((item) => (
           <div
             key={item}
-            className="flex items-start gap-2 text-white/70 text-sm leading-relaxed"
+            className="flex items-start gap-2 text-white/70 text-body leading-relaxed"
           >
             <Check className="w-4 h-4 text-[#00FF94] mt-0.5 flex-shrink-0" />
             <span>{item}</span>
@@ -157,7 +204,7 @@ export default function InvestimentoSlide() {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#00FF94]/5 via-transparent to-transparent pointer-events-none" />
       }
     >
-      <div className="w-full space-y-6">
+      <div className="w-full space-y-8">
         {/* Linha 1: 3 agentes (Follow-up | SDR centro | Pós-vendas) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {agentPlans.map((plan, index) => (
@@ -184,14 +231,14 @@ export default function InvestimentoSlide() {
               <h3 className="text-xl font-semibold text-white">
                 {fullPlan.name}
               </h3>
-              <p className="text-white/60 text-sm leading-relaxed">
+              <p className="text-white/60 text-body leading-relaxed">
                 {fullPlan.subtitle}
               </p>
               <div className="flex flex-wrap gap-4 pt-2">
                 {fullPlan.bullets.map((item) => (
                   <div
                     key={item}
-                    className="flex items-center gap-2 text-white/70 text-sm"
+                    className="flex items-center gap-2 text-white/70 text-body"
                   >
                     <Check className="w-4 h-4 text-[#00FF94] flex-shrink-0" />
                     <span>{item}</span>
@@ -206,7 +253,7 @@ export default function InvestimentoSlide() {
                 Setup
               </p>
               <div className="flex items-baseline justify-center gap-2">
-                <span className="text-white/30 line-through text-sm">
+                <span className="text-white/30 line-through text-body">
                   {fullPlan.setup.previous}
                 </span>
                 <span className="text-4xl font-bold text-[#00FF94]">
@@ -230,13 +277,55 @@ export default function InvestimentoSlide() {
 
             {/* CTA */}
             <div className="flex justify-end">
-              <div className="bg-[#00FF94]/20 border border-[#00FF94]/40 rounded-xl px-6 py-4 text-center">
+              <div className="bg-[#00FF94]/20 border border-[#00FF94]/40 rounded-2xl px-6 py-4 text-center">
                 <p className="text-[#00FF94] font-bold text-2xl">100% OFF</p>
                 <p className="text-white/60 text-xs">no setup</p>
               </div>
             </div>
           </div>
         </motion.div>
+
+        <div className="pt-2">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-1.5 h-6 bg-[#00E5FF] rounded-full" />
+            <h3 className="text-lg font-semibold text-white">
+              Entregáveis Inclusos
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full">
+            {deliverables.map((item, index) => (
+              <motion.div
+                key={item.title}
+                className="bg-white/5 border border-white/10 rounded-2xl p-5"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 + index * 0.1 }}
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="p-2.5 bg-[#00E5FF]/10 rounded-lg text-[#00E5FF]">
+                    {item.icon}
+                  </div>
+                  <h4 className="text-base font-semibold text-white">
+                    {item.title}
+                  </h4>
+                </div>
+                <ul className="space-y-2">
+                  {item.items.map((subItem) => (
+                    <li
+                      key={subItem}
+                      className="flex items-center gap-2 text-white/60 text-body"
+                    >
+                      <Check className="w-4 h-4 text-[#00FF94]" />
+                      <span>{subItem}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </SlideShell>
   );

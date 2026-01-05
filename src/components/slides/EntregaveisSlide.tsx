@@ -44,7 +44,7 @@ const deliverables = [
     title: "Treinamento & Suporte",
     items: [
       "Suporte contínuo",
-      "30 dias de testes contínuos até validação da equipe da Tempo",
+      "30 dias de testes contínuos até validação da equipe",
       "Banco de dados completo e Servidor Ativo 24/7",
     ],
   },

@@ -2,7 +2,7 @@
 @source "../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}";
 @custom-variant dark (&:is(.dark *));
 
-/* Theme tokens - CM Remédios Presentation */
+/* Theme tokens - Base presentation template */
 :root {
   color-scheme: dark;
 

@@ -70,7 +70,7 @@ export default function IntroSlide({ onEnter }: IntroSlideProps) {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9 }}
         >
-          Solução desenhada exclusivamente para Tempo Energia.
+          Solução desenhada para o contexto da sua operação.
         </motion.p>
 
         {/* CTA Button */}

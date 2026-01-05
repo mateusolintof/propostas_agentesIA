@@ -83,7 +83,7 @@ export default function FAQSlide() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.05 }}
-            className="bg-white/5 rounded-xl border border-white/10 overflow-hidden hover:border-[#00E5FF]/30 transition-colors"
+            className="bg-white/5 rounded-2xl border border-white/10 overflow-hidden hover:border-[#00E5FF]/30 transition-colors"
           >
             <button
               onClick={() => toggleItem(index)}

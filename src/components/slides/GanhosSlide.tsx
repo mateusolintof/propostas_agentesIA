@@ -5,12 +5,39 @@ import {
   Zap,
   CalendarCheck,
   TrendingUp,
+  TrendingDown,
+  Calculator,
   DollarSign,
+  Clock,
   ArrowRight,
   BarChart3,
 } from "lucide-react";
 import SlideShell from "@/components/ui/SlideShell";
 import type { ModalKind } from "@/types/modal";
+
+const highlights = [
+  {
+    icon: <TrendingUp className="w-5 h-5" />,
+    label: "ROI Projetado",
+    value: "+300%",
+    desc: "em 12 meses",
+    color: "#00FF94",
+  },
+  {
+    icon: <Clock className="w-5 h-5" />,
+    label: "Payback",
+    value: "3-4",
+    desc: "meses",
+    color: "#00E5FF",
+  },
+  {
+    icon: <TrendingDown className="w-5 h-5" />,
+    label: "Economia",
+    value: "-60%",
+    desc: "custos operacionais",
+    color: "#FFD700",
+  },
+];
 
 const gains = [
   {
@@ -65,107 +92,217 @@ export default function GanhosSlide({ onOpenModal }: GanhosSlideProps) {
     <SlideShell
       eyebrow="Resultados"
       eyebrowColor="success"
-      title="Ganhos Esperados"
-      subtitle="Impacto direto nos indicadores de performance comercial"
+      title="Resultados & Viabilidade Econômica"
+      subtitle="Ganhos operacionais e simuladores para validar ROI e economia."
+      align="center"
       background={
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-[#00FF94]/5 via-transparent to-transparent pointer-events-none" />
       }
     >
-      {/* Main Metrics */}
-      <div className="grid grid-cols-2 gap-4 w-full max-w-2xl mx-auto">
-        {mainMetrics.map((metric, index) => (
-          <motion.div
-            key={metric.label}
-            className="relative overflow-hidden rounded-2xl p-6 text-center"
-            style={{
-              background: `linear-gradient(135deg, ${metric.color}15, transparent)`,
-              border: `1px solid ${metric.color}30`,
-            }}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+      <div className="w-full space-y-8">
+        {/* Calculator Cards */}
+        <div className="flex items-center justify-between text-xs uppercase tracking-[0.25em] text-white/40 max-w-4xl mx-auto">
+          <span>Simuladores principais</span>
+          <span className="hidden sm:inline">Clique para simular</span>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl mx-auto">
+          <motion.button
+            type="button"
+            onClick={() => onOpenModal?.({ type: "roi" })}
+            className="bg-gradient-to-br from-[#00FF94]/10 to-transparent border border-[#00FF94]/30 rounded-2xl p-6 text-left hover:border-[#00FF94]/60 hover:bg-[#00FF94]/5 transition-all cursor-pointer group"
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: index * 0.15 }}
+            transition={{ delay: 0.2 }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
           >
-            <p
-              className="text-4xl md:text-5xl font-bold"
-              style={{ color: metric.color }}
+            <div className="flex items-start gap-4">
+              <div className="p-4 bg-[#00FF94]/20 rounded-xl">
+                <Calculator className="w-8 h-8 text-[#00FF94]" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-xl font-semibold text-white group-hover:text-[#00FF94] transition-colors">
+                  Calculadora de ROI
+                </h3>
+                <p className="text-white/60 mt-2 text-body leading-relaxed">
+                  Simule o retorno do investimento com volume de leads, ticket
+                  médio e conversão atual.
+                </p>
+                <div className="mt-4 flex items-center gap-2 text-[#00FF94]">
+                  <Zap className="w-4 h-4" />
+                  <span className="text-body font-medium">Calcular agora</span>
+                </div>
+              </div>
+            </div>
+          </motion.button>
+
+          <motion.button
+            type="button"
+            onClick={() => onOpenModal?.({ type: "costs" })}
+            className="bg-gradient-to-br from-[#00E5FF]/10 to-transparent border border-[#00E5FF]/30 rounded-2xl p-6 text-left hover:border-[#00E5FF]/60 hover:bg-[#00E5FF]/5 transition-all cursor-pointer group"
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <div className="flex items-start gap-4">
+              <div className="p-4 bg-[#00E5FF]/20 rounded-xl">
+                <DollarSign className="w-8 h-8 text-[#00E5FF]" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-xl font-semibold text-white group-hover:text-[#00E5FF] transition-colors">
+                  Simulador de Economia
+                </h3>
+                <p className="text-white/60 mt-2 text-body leading-relaxed">
+                  Calcule a redução de custos com base no tamanho do time e no
+                  nível de automação.
+                </p>
+                <div className="mt-4 flex items-center gap-2 text-[#00E5FF]">
+                  <Zap className="w-4 h-4" />
+                  <span className="text-body font-medium">Simular economia</span>
+                </div>
+              </div>
+            </div>
+          </motion.button>
+        </div>
+
+        {/* Highlights */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 w-full max-w-3xl mx-auto">
+          {highlights.map((item, index) => (
+            <motion.div
+              key={item.label}
+              className="bg-white/5 border border-white/10 rounded-xl p-4 text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.4 + index * 0.1 }}
             >
-              {metric.value}
-            </p>
+              <div
+                className="w-10 h-10 mx-auto rounded-lg flex items-center justify-center mb-3"
+                style={{ backgroundColor: `${item.color}20` }}
+              >
+                <div style={{ color: item.color }}>{item.icon}</div>
+              </div>
+              <p className="text-3xl md:text-4xl font-bold" style={{ color: item.color }}>
+                {item.value}
+              </p>
+              <p className="text-white/70 text-body mt-1">{item.label}</p>
+              <p className="text-white/40 text-xs">{item.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Main Metrics */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-4xl mx-auto">
+          {mainMetrics.map((metric, index) => (
+            <motion.div
+              key={metric.label}
+              className="relative overflow-hidden rounded-2xl p-6 text-center"
+              style={{
+                background: `linear-gradient(135deg, ${metric.color}15, transparent)`,
+                border: `1px solid ${metric.color}30`,
+              }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.6 + index * 0.1 }}
+            >
+              <p
+                className="text-4xl md:text-5xl font-bold"
+                style={{ color: metric.color }}
+              >
+                {metric.value}
+              </p>
             <p className="text-white/70 mt-2 text-body font-medium">
               {metric.label}
             </p>
-            <p className="text-white/50 text-xs md:text-sm mt-2 leading-relaxed">
+            <p className="text-white/50 text-xs mt-2 leading-relaxed">
               {metric.context}
             </p>
-          </motion.div>
-        ))}
-      </div>
+            </motion.div>
+          ))}
+        </div>
 
-      {/* Gains Grid */}
-      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-3 w-full">
-        {gains.map((gain, index) => (
-          <motion.div
-            key={gain.title}
-            className="bg-white/5 border border-white/10 rounded-xl p-4 flex items-start gap-3"
-            initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 + index * 0.1 }}
-          >
-            <div
-              className={`p-2 rounded-lg ${
-                gain.color === "cyan"
-                  ? "bg-[#00E5FF]/10 text-[#00E5FF]"
-                  : "bg-[#00FF94]/10 text-[#00FF94]"
-              }`}
+        {/* Gains Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 w-full">
+          {gains.map((gain, index) => (
+            <motion.div
+              key={gain.title}
+              className="bg-white/5 border border-white/10 rounded-xl p-4 flex items-start gap-3 text-left"
+              initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.7 + index * 0.08 }}
             >
-              {gain.icon}
-            </div>
-            <div>
-              <h3 className="text-base font-semibold text-white">
-                {gain.title}
-              </h3>
-              <p className="text-white/50 mt-1 text-[13px] leading-relaxed">
-                {gain.desc}
-              </p>
-            </div>
-          </motion.div>
-        ))}
+              <div
+                className={`p-2 rounded-lg ${
+                  gain.color === "cyan"
+                    ? "bg-[#00E5FF]/10 text-[#00E5FF]"
+                    : "bg-[#00FF94]/10 text-[#00FF94]"
+                }`}
+              >
+                {gain.icon}
+              </div>
+              <div>
+                <h3 className="text-base font-semibold text-white">
+                  {gain.title}
+                </h3>
+                <p className="text-white/50 mt-1 text-body leading-relaxed">
+                  {gain.desc}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Action Buttons */}
+        <motion.div
+          className="flex flex-wrap justify-center gap-4"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.9 }}
+        >
+          <motion.button
+            type="button"
+            onClick={() => onOpenModal?.({ type: "gains" })}
+            className="group flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[#00FF94]/10 to-transparent border border-[#00FF94]/30 rounded-xl text-white hover:border-[#00FF94]/60 hover:bg-[#00FF94]/5 transition-all"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <TrendingUp className="w-5 h-5 text-[#00FF94]" />
+            <span className="font-medium">Detalhar Ganhos Operacionais</span>
+            <ArrowRight className="w-4 h-4 text-[#00FF94] group-hover:translate-x-1 transition-transform" />
+          </motion.button>
+
+          <motion.button
+            type="button"
+            onClick={() => onOpenModal?.({ type: "intelligence" })}
+            className="group flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[#00E5FF]/10 to-transparent border border-[#00E5FF]/30 rounded-xl text-white hover:border-[#00E5FF]/60 hover:bg-[#00E5FF]/5 transition-all"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <BarChart3 className="w-5 h-5 text-[#00E5FF]" />
+            <span className="font-medium">Ver Inteligência de Dados</span>
+            <ArrowRight className="w-4 h-4 text-[#00E5FF] group-hover:translate-x-1 transition-transform" />
+          </motion.button>
+        </motion.div>
+
+        <motion.p
+          className="text-white/40 text-xs text-center"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 1 }}
+        >
+          * Valores projetados com base em benchmarks de mercado. Use os
+          simuladores para criar cenários personalizados.
+        </motion.p>
       </div>
-
-      {/* Action Buttons */}
-      <motion.div
-        className="mt-8 flex flex-wrap justify-center gap-4"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ delay: 0.5 }}
-      >
-        <motion.button
-          type="button"
-          onClick={() => onOpenModal?.({ type: "gains" })}
-          className="group flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[#00FF94]/10 to-transparent border border-[#00FF94]/30 rounded-xl text-white hover:border-[#00FF94]/60 hover:bg-[#00FF94]/5 transition-all"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          <TrendingUp className="w-5 h-5 text-[#00FF94]" />
-          <span className="font-medium">Detalhar Ganhos Operacionais</span>
-          <ArrowRight className="w-4 h-4 text-[#00FF94] group-hover:translate-x-1 transition-transform" />
-        </motion.button>
-
-        <motion.button
-          type="button"
-          onClick={() => onOpenModal?.({ type: "intelligence" })}
-          className="group flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[#00E5FF]/10 to-transparent border border-[#00E5FF]/30 rounded-xl text-white hover:border-[#00E5FF]/60 hover:bg-[#00E5FF]/5 transition-all"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          <BarChart3 className="w-5 h-5 text-[#00E5FF]" />
-          <span className="font-medium">Ver Inteligência de Dados</span>
-          <ArrowRight className="w-4 h-4 text-[#00E5FF] group-hover:translate-x-1 transition-transform" />
-        </motion.button>
-      </motion.div>
     </SlideShell>
   );
 }

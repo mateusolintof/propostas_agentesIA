@@ -1,7 +1,7 @@
 # 🎯 Proposta de Projeto
 ## Sistema de Agentes de IA Conversacionais — Atendimento Comercial
 
-**Cliente:** Modelo Padrão
+**Cliente:** Modelo base
 **Preparado por:** Convert A.I — Arquitetura de Agentes de IA  
 
 ---
@@ -30,7 +30,7 @@
 
 ---
 
-## 2) Solução Proposta — 4 Agentes + Ecossistema de Gestão
+## 2) Solução Proposta — 3 Agentes + Ecossistema de Gestão
 
 ### Proposta de valor
 
@@ -38,7 +38,7 @@
 
 ### Arquitetura (alto nível)
 
-- **Agentes especializados** (4 frentes).
+- **Agentes especializados** (3 frentes).
 - **Handoffs inteligentes** para humano quando necessário.
 - **CRM integrado** (inbox + pipeline + histórico).
 - **Dashboard executivo** com KPIs e insights acionáveis.
@@ -65,22 +65,7 @@
 - Encaminhamento (orçamento/pedido, pagamento ou vendedor).
 - Integração CRM/ERP (conforme escopo definido no kick-off).
 
-### 3.2) Agente 2 — FAQ Inteligente
-
-**O que faz**
-- Responde dúvidas repetitivas e operacionais com base em uma base de conhecimento validada.
-
-**Cobertura típica**
-- Catálogo e disponibilidade (quando integrado).
-- Entrega, frete, prazos, retirada.
-- Pagamento, NF, trocas/devoluções, políticas.
-
-**Benefícios**
-- Reduz carga do time humano.
-- Mantém consistência e qualidade de informação.
-- Converte dúvidas em demanda comercial (handoff para SDR quando necessário).
-
-### 3.3) Agente 3 — Follow-up Automático (Anti-Abandono)
+### 3.2) Agente 2 — Follow-up Automático (Anti-Abandono)
 
 **O que faz**
 - Cadência automática para reativar conversas e recuperar orçamentos/pedidos pendentes.
@@ -95,7 +80,7 @@
 - Escalação para humano conforme regra (valor, score, SLA, complexidade).
 - Relatórios de abandono, resposta e recuperação.
 
-### 3.4) Agente 4 — Pesquisa & NPS (Satisfação e Reputação)
+### 3.3) Agente 3 — Pesquisa & NPS (Satisfação e Reputação)
 
 **O que faz**
 - Coleta feedback (NPS), identifica detratores e direciona promotores para avaliação pública quando apropriado.
@@ -150,7 +135,7 @@
 - **Mensalidade:** R$ 2.500 / mês (todos os módulos)
 
 **Incluso no pacote**
-- 4 agentes configurados com base de conhecimento.
+- 3 agentes configurados com base de conhecimento.
 - CRM e Dashboard configurados.
 - Integração com ERP e canais (via API/webhooks, conforme escopo definido no kick-off).
 - Treinamento e 30 dias de acompanhamento.

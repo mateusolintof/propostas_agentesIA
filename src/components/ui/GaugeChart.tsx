@@ -87,7 +87,7 @@ export default function GaugeChart({
         </text>
       </svg>
 
-      <p className="text-white/80 text-sm font-medium mt-1 text-center">
+      <p className="text-white/80 text-body font-medium mt-1 text-center">
         {label}
       </p>
       {sublabel && (

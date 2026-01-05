@@ -26,8 +26,6 @@ import ObjetivoProjetoSlide from "@/components/slides/ObjetivoProjetoSlide";
 import SolucaoSlide from "@/components/slides/SolucaoSlide";
 import FerramentasSlide from "@/components/slides/FerramentasSlide";
 import GanhosSlide from "@/components/slides/GanhosSlide";
-import ViabilidadeSlide from "@/components/slides/ViabilidadeSlide";
-import EntregaveisSlide from "@/components/slides/EntregaveisSlide";
 import InvestimentoSlide from "@/components/slides/InvestimentoSlide";
 import CronogramaSlide from "@/components/slides/CronogramaSlide";
 import FAQSlide from "@/components/slides/FAQSlide";
@@ -47,13 +45,14 @@ export default function Home() {
     setModal(null);
   }, []);
 
-  const TOTAL_SLIDES = 11;
-
   const scrollToIndex = useCallback((index: number) => {
-    if (!containerRef.current) return;
-    const slideWidth = containerRef.current.offsetWidth;
-    const clampedIndex = Math.max(0, Math.min(TOTAL_SLIDES - 1, index));
-    containerRef.current.scrollTo({
+    const container = containerRef.current;
+    if (!container) return;
+    const slideWidth = container.offsetWidth;
+    const totalSlides = container.children.length;
+    if (totalSlides === 0) return;
+    const clampedIndex = Math.max(0, Math.min(totalSlides - 1, index));
+    container.scrollTo({
       left: slideWidth * clampedIndex,
       behavior: "smooth",
     });
@@ -76,15 +75,9 @@ export default function Home() {
       },
       {
         id: "ganhos",
-        label: "Ganhos",
+        label: "Resultados",
         element: <GanhosSlide onOpenModal={handleOpenModal} />,
       },
-      {
-        id: "viabilidade",
-        label: "Viabilidade",
-        element: <ViabilidadeSlide onOpenModal={handleOpenModal} />,
-      },
-      { id: "entregaveis", label: "Entregáveis", element: <EntregaveisSlide /> },
       { id: "investimento", label: "Investimento", element: <InvestimentoSlide /> },
       { id: "faq", label: "FAQ", element: <FAQSlide /> },
       { id: "cronograma", label: "Cronograma", element: <CronogramaSlide /> },
