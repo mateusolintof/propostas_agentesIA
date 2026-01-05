@@ -1,6 +1,6 @@
-# CM Remedios — Proposta de Agentes IA
+# Modelo de Proposta de Agentes IA
 
-Apresentacao interativa horizontal para proposta comercial da CM Remedios, com background 3D sutil, modais interativos e animacoes profissionais.
+Apresentacao interativa horizontal para Proposta Comercial da minha agência de Tecnologia - Convert.AI - com background 3D sutil, modais interativos e animacoes profissionais.
 
 ## Stack
 

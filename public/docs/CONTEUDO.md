@@ -1,9 +1,8 @@
 # 🎯 Proposta de Projeto
 ## Sistema de Agentes de IA Conversacionais — Atendimento Comercial
 
-**Cliente:** CM Remédios  
+**Cliente:** Modelo Padrão
 **Preparado por:** Convert A.I — Arquitetura de Agentes de IA  
-**Data:** Dezembro/2025
 
 ---
 

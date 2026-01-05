@@ -35,7 +35,7 @@ export default function DiagnosticoSlide() {
       eyebrow="Diagnóstico & Cenário"
       eyebrowColor="warning"
       title="Análise de Eficiência & Gargalos"
-      subtitle="Como a cobertura 24/7 e a qualificação imediata vão destravar sua Taxa de Conversão."
+      subtitle="Como a cobertura de atendimento 24/7 e Atendimento Qualificado vão destravar sua Taxa de Conversão."
       size="compact"
       background={
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-900/10 via-transparent to-transparent pointer-events-none" />
@@ -52,7 +52,7 @@ export default function DiagnosticoSlide() {
             <div className="flex items-center gap-3">
               <div className="w-1.5 h-6 bg-amber-500 rounded-full" />
               <h3 className="text-lg font-semibold text-white">
-                O Raio-X Atual (Gargalo Operacional)
+                O Raio-X Atual (Desafios e Gargalos Identificados)
               </h3>
             </div>
             <p className="text-sm text-white/50 ml-5">

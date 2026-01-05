@@ -1,8 +1,8 @@
-# CM Remedios — Guia de Desenvolvimento
+# Modelo de Proposta Comercial — Guia de Desenvolvimento
 
 ## Visao Geral
 
-Apresentacao horizontal interativa para proposta comercial da CM Remedios, focada em Agentes de IA para Atendimento Comercial.
+Apresentacao horizontal interativa para Proposta Comercial da minha agência de Tecnologia - Convert.AI , focada em Agentes de IA para Atendimento Comercial e outras soluções.
 
 **Cliente:** CM Remedios
 **Documento de negocio:** `public/docs/arquitetura.md`
@@ -245,3 +245,4 @@ Ver `public/docs/arquitetura.md` para detalhes sobre:
 4. **Metricas:** KPIs e metas esperadas
 5. **Investimento:** R$25k setup + R$2.5k/mes
 6. **Cronograma:** 4 fases de implementacao
+ao

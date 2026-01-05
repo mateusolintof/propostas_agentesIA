@@ -3,9 +3,9 @@ import { Providers } from "./providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "CM Remédios — Agentes de IA para Atendimento Comercial",
+  title: "Agentes de IA & Inteligência Comercial",
   description:
-    "Projeto CM Remédios com agentes de IA para atendimento comercial: qualificação de leads, FAQ inteligente, follow-up automático, CRM e painel executivo.",
+    "Projeto Modelo Padrão com agentes de IA para atendimento comercial: qualificação de leads, FAQ inteligente, follow-up automático, CRM e painel executivo.",
   icons: { icon: "/favicon.ico" },
 };
 
