@@ -1,33 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { TrendingDown, Clock, AlertTriangle } from "lucide-react";
+import { AlertTriangle, Clock, TrendingDown } from "lucide-react";
 import SlideShell from "@/components/ui/SlideShell";
 import GaugeChart from "@/components/ui/GaugeChart";
 
-const metricsAtual = [
-  {
-    icon: <Clock className="w-5 h-5" />,
-    value: "320",
-    title: "Leads fora do horário comercial",
-    caption: "64% do total mensal",
-    color: "text-amber-400",
-  },
-  {
-    icon: <TrendingDown className="w-5 h-5" />,
-    value: "5%",
-    title: "Taxa de conversão atual",
-    caption: "Base histórica do funil",
-    color: "text-red-400",
-  },
-  {
-    icon: <AlertTriangle className="w-5 h-5" />,
-    value: "Alto",
-    title: "Oportunidades perdidas",
-    caption: "Sem resposta imediata",
-    color: "text-amber-400",
-  },
-];
+const coverage = { noResponse: 64, responded: 36 };
+const conversion = { current: 5, projected: 11 };
 
 export default function DiagnosticoSlide() {
   return (
@@ -35,7 +14,7 @@ export default function DiagnosticoSlide() {
       eyebrow="Diagnóstico & Cenário"
       eyebrowColor="warning"
       title="Análise de Eficiência & Gargalos"
-      subtitle="Como a cobertura de atendimento 24/7 e Atendimento Qualificado vão destravar sua Taxa de Conversão."
+      subtitle="Um diagnóstico explicativo do funil para mostrar onde a receita está escapando."
       size="compact"
       background={
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-900/10 via-transparent to-transparent pointer-events-none" />
@@ -51,35 +30,120 @@ export default function DiagnosticoSlide() {
               Diagnóstico Atual (base 500 leads)
             </h3>
           </div>
-          <p className="text-body text-white/50">
-            O gargalo principal acontece na velocidade e na cobertura do
-            atendimento.
-          </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {metricsAtual.map((metric, index) => (
-              <motion.div
-                key={metric.value + metric.title}
-                className="bg-white/5 border border-white/10 rounded-2xl p-5"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <div className="flex items-center gap-3">
-                  <div className={`p-2 bg-white/5 rounded-lg ${metric.color}`}>
-                    {metric.icon}
-                  </div>
-                  <span className={`text-2xl font-bold ${metric.color}`}>
-                    {metric.value}
-                  </span>
-                </div>
-                <p className="mt-3 text-white/80 text-body font-medium">
-                  {metric.title}
+          <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-6">
+            <div className="space-y-4">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <p className="text-xs uppercase tracking-[0.2em] text-amber-300/80">
+                  O que está acontecendo
                 </p>
-                <p className="text-white/40 text-xs mt-1">{metric.caption}</p>
-              </motion.div>
-            ))}
+                <p className="mt-2 text-body text-white/60">
+                  O gargalo é velocidade de resposta e cobertura. O lead chega,
+                  mas o tempo de retorno não acompanha o volume.
+                </p>
+                <div className="mt-4 space-y-3">
+                  <div className="flex items-start gap-3">
+                    <div className="rounded-lg bg-white/5 p-2 text-amber-300">
+                      <Clock className="h-4 w-4" />
+                    </div>
+                    <div>
+                      <p className="text-body font-semibold text-white">
+                        64% chegam fora do horário
+                      </p>
+                      <p className="text-xs text-white/50">
+                        ~320 leads/mês sem resposta imediata
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="rounded-lg bg-white/5 p-2 text-red-400">
+                      <TrendingDown className="h-4 w-4" />
+                    </div>
+                    <div>
+                      <p className="text-body font-semibold text-white">
+                        Conversão atual de 5%
+                      </p>
+                      <p className="text-xs text-white/50">
+                        Parte do interesse esfria antes de ser atendido
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <div className="rounded-lg bg-white/5 p-2 text-amber-300">
+                      <AlertTriangle className="h-4 w-4" />
+                    </div>
+                    <div>
+                      <p className="text-body font-semibold text-white">
+                        Oportunidades perdidas
+                      </p>
+                      <p className="text-xs text-white/50">
+                        Lead sem retorno rápido tende a migrar
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <p className="text-xs uppercase tracking-[0.2em] text-white/40">
+                  Leitura do funil
+                </p>
+                <p className="mt-2 text-body text-white/60">
+                  A mídia gera demanda, mas o atendimento não converte no timing
+                  ideal. O problema é capacidade, não volume.
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <p className="text-xs uppercase tracking-[0.2em] text-white/40">
+                  Cobertura de atendimento
+                </p>
+                <div className="mt-3 h-3 w-full overflow-hidden rounded-full bg-white/10 flex">
+                  <div
+                    className="h-full bg-amber-400/80"
+                    style={{ width: `${coverage.noResponse}%` }}
+                  />
+                  <div
+                    className="h-full bg-emerald-400/70"
+                    style={{ width: `${coverage.responded}%` }}
+                  />
+                </div>
+                <div className="mt-2 flex items-center justify-between text-xs text-white/50">
+                  <span>64% sem resposta rápida</span>
+                  <span>36% respondidos</span>
+                </div>
+                <p className="mt-3 text-body text-white/60">
+                  O lead precisa de resposta em minutos, não horas.
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <p className="text-xs uppercase tracking-[0.2em] text-white/40">
+                  Conversão no funil
+                </p>
+                <div className="mt-4 flex items-end gap-4 h-24">
+                  <div className="flex flex-col items-center gap-2">
+                    <div
+                      className="w-10 rounded-xl border border-amber-400/40 bg-amber-400/20"
+                      style={{ height: `${conversion.current * 6}px` }}
+                    />
+                    <span className="text-xs text-white/50">Atual 5%</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-2">
+                    <div
+                      className="w-10 rounded-xl border border-emerald-400/40 bg-emerald-400/20"
+                      style={{ height: `${conversion.projected * 6}px` }}
+                    />
+                    <span className="text-xs text-white/50">Meta 10-12%</span>
+                  </div>
+                </div>
+                <p className="mt-3 text-body text-white/60">
+                  A queda vem de atrasos, triagem manual e falta de cadência.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -92,28 +156,66 @@ export default function DiagnosticoSlide() {
               Projeção com IA (R$ 3.000/mês em mídia)
             </h3>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-6">
+
+          <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr] gap-6">
             <div className="space-y-4">
-              <div className="grid grid-cols-2 gap-6">
-                <GaugeChart
-                  value={14}
-                  max={50}
-                  label="Cenário Atual (5%)"
-                  sublabel="~14 vendas/mês"
-                  color="amber"
-                />
-                <GaugeChart
-                  value={32}
-                  max={50}
-                  label="Cenário IA (10-12%)"
-                  sublabel="~32 vendas/mês"
-                  color="emerald"
-                />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <GaugeChart
+                    value={14}
+                    max={50}
+                    label="Cenário Atual (5%)"
+                    sublabel="~14 vendas/mês"
+                    color="amber"
+                  />
+                  <p className="mt-2 text-xs text-white/50">
+                    Conversão limitada por resposta lenta e triagem manual.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-emerald-500/20 bg-emerald-500/10 p-4">
+                  <GaugeChart
+                    value={32}
+                    max={50}
+                    label="Cenário IA (10-12%)"
+                    sublabel="~32 vendas/mês"
+                    color="emerald"
+                  />
+                  <p className="mt-2 text-xs text-white/60">
+                    Atendimento 24/7 + qualificação automática acelera o funil.
+                  </p>
+                </div>
+              </div>
+
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <p className="text-xs uppercase tracking-[0.2em] text-white/40">
+                  Base de investimento
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2 text-body text-white/70">
+                  <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">
+                    Custo/lead ~R$11
+                  </span>
+                  <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">
+                    ~272 leads/mês
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <p className="text-xs uppercase tracking-[0.2em] text-white/40">
+                  Como a IA muda o cenário
+                </p>
+                <ul className="mt-3 space-y-2 text-body text-white/60">
+                  <li>Atendimento 24/7 reduz o tempo de espera.</li>
+                  <li>Qualificação automática elimina curiosos.</li>
+                  <li>Handoff rápido entrega lead quente ao vendedor.</li>
+                </ul>
               </div>
 
               <motion.div
                 className="bg-emerald-500/10 border border-emerald-500/30 rounded-2xl p-5 flex items-center justify-between"
-                initial={{ opacity: 0, scale: 0.95 }}
+                initial={{ opacity: 0, scale: 0.96 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
@@ -131,35 +233,19 @@ export default function DiagnosticoSlide() {
                   </p>
                 </div>
               </motion.div>
-            </div>
-
-            <div className="space-y-4">
-              <div className="bg-white/5 border border-white/10 rounded-2xl p-5">
-                <p className="text-xs uppercase tracking-[0.2em] text-white/40">
-                  Base de investimento
-                </p>
-                <div className="mt-3 flex flex-wrap gap-2 text-body text-white/70">
-                  <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">
-                    Custo/lead ~R$11
-                  </span>
-                  <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">
-                    ~272 leads/mês
-                  </span>
-                </div>
-              </div>
 
               <motion.div
                 className="bg-red-500/10 border border-red-500/20 rounded-2xl p-5"
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: 0.3 }}
+                transition={{ delay: 0.25 }}
               >
                 <p className="text-red-400 text-xs uppercase tracking-wider mb-1">
-                  Risco da Inércia
+                  Risco se nada for feito
                 </p>
                 <p className="text-white/70 text-body">
-                  Sem IA: ~174 leads/mês (64%) continuarão sem resposta imediata.
+                  Sem IA: ~174 leads/mês continuarão sem resposta imediata.
                 </p>
               </motion.div>
             </div>
@@ -171,11 +257,11 @@ export default function DiagnosticoSlide() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
+          transition={{ delay: 0.3 }}
         >
           <p className="text-white/80 text-body leading-relaxed">
-            <strong className="text-[#00FF94]">Diagnóstico:</strong> o gargalo é
-            falta de capacidade de processamento.{" "}
+            <strong className="text-[#00FF94]">Diagnóstico:</strong> o gargalo
+            é falta de capacidade de processamento.{" "}
             <strong className="text-[#00E5FF]">
               A implementação dos agentes
             </strong>{" "}
